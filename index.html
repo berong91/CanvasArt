@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Pham, Duy</title>
+		
+		<style>
+		body {
+			padding: 2em;
+		}
+		canvas {
+			border: none;
+		}
+		</style>
+		
+		<script>
+			var canvas;
+			var ctx;
+			
+			function getPosition(event){
+				var x = event.x;
+				var y = event.y;
+				x -= canvas.offsetLeft;
+				y -= canvas.offsetTop;
+				
+				document.getElementById("x").innerHTML  =  x;
+				document.getElementById("y").innerHTML  =  y;
+			}
+			
+			function draw() {
+				canvas = document.getElementById("myShape");
+				canvas.addEventListener("mousemove", getPosition, false);
+				ctx = canvas.getContext("2d");
+				
+				clearCanvas();
+				
+				drawBackground();
+				drawHouseBox();
+				drawRoof();				
+				drawBorder();
+				drawDetails();
+			}
+			
+			function drawBackground(){
+				ctx.beginPath();
+				ctx.rect(0, 0, 300, 300);
+				ctx.closePath();
+				ctx.fillStyle = "cyan";
+				ctx.fill();
+			
+				// Draw quadratic curve for a hill
+				ctx.beginPath();
+				ctx.moveTo(0,150);
+				ctx.quadraticCurveTo(100,100,300,200);
+				ctx.lineTo(300,300);
+				ctx.lineTo(0,300);
+				ctx.lineTo(0,150);
+				ctx.closePath();
+				ctx.lineWidth = 3;
+				ctx.strokeStyle = "black";
+				ctx.stroke();
+				ctx.fillStyle  = "green";
+				ctx.fill();
+			}
+						
+			function drawHouseBox(){
+				// Draw a box object as a house
+				ctx.beginPath();
+				ctx.strokeStyle = "black";
+				ctx.lineWidth = 3;
+				ctx.moveTo(30, 150);
+				ctx.lineTo(30,270);
+				ctx.lineTo(130,270);
+				ctx.lineTo(130,150);
+				ctx.stroke();				
+				ctx.closePath();
+				ctx.fillStyle  = "brown";
+				ctx.fill();
+				
+				ctx.beginPath();
+				ctx.strokeStyle = "black";
+				ctx.lineWidth = 3;
+				ctx.moveTo(132, 150);
+				ctx.lineTo(260, 130);
+				ctx.lineTo(260, 250);
+				ctx.lineTo(132, 270);
+				ctx.stroke();				
+				ctx.closePath();
+				ctx.fillStyle  = "brown";
+				ctx.fill();
+			}
+				
+			function drawRoof(){
+				// Draw a roof
+				ctx.beginPath();
+				ctx.strokeStyle = "black";
+				ctx.lineWidth = 3;
+				ctx.moveTo(78, 80);
+				ctx.lineTo(13,150);
+				ctx.lineTo(140,150);
+				ctx.lineTo(78,80);
+				ctx.stroke();
+				ctx.closePath();
+				ctx.fillStyle  = "yellow";
+				ctx.fill();
+				
+				ctx.beginPath();
+				ctx.strokeStyle = "black";
+				ctx.lineWidth = 3;
+				ctx.moveTo(78, 80);
+				ctx.lineTo(228,60);
+				ctx.lineTo(280,130);
+				ctx.lineTo(142	,150);
+				ctx.lineTo(78, 80);
+				ctx.stroke();
+				ctx.closePath();
+				ctx.fillStyle  = "yellow";
+				ctx.fill();
+			}
+			
+			function drawDetails(){
+				// Draw house's details
+				
+			}
+			
+			function  drawBorder(){
+				// Draw border
+				ctx.beginPath();
+				var gradient=ctx.createLinearGradient(0,0,170,0);
+				gradient.addColorStop("0","magenta");
+				gradient.addColorStop("0.5","blue");
+				gradient.addColorStop("1.0","red");
+				
+				ctx.lineWidth = 10;
+				ctx.strokeStyle  = gradient;
+				ctx.strokeRect(0,0,300,300);
+				ctx.fill();
+				ctx.closePath();
+			}
+			
+			function clearCanvas(){
+				ctx.save();
+				// Use the identity matrix while clearing the canvas
+				ctx.setTransform(1, 0, 0, 1, 0, 0);
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				// Restore the transform
+				ctx.restore();
+			}
+		</script>
+	</head>
+	<body onLoad="draw()">
+		<canvas id="myShape" width="300" height="300"></canvas>
+		<br/>
+		X : <h2 id="x"></h2>
+		<br/>
+		Y: <h2 id="y"></h2>
+	</body>
+</html>
