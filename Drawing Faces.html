@@ -32,13 +32,16 @@
 				canvas.addEventListener("mousemove", getPosition, false);
 				ctx = canvas.getContext("2d");
 				
+				// Always call first
 				clearCanvas();
 				
 				drawBackground();
 				drawHouseBox();
-				drawRoof();				
-				drawBorder();
+				drawRoof();	
 				drawDetails();
+				
+				// Always call last
+				drawBorder();
 			}
 			
 			function drawBackground(){
@@ -120,7 +123,72 @@
 			
 			function drawDetails(){
 				// Draw house's details
+				// Draw front door
+				ctx.beginPath();
+				ctx.strokeStyle = "black";
+				ctx.lineWidth = 3;
+				ctx.moveTo(55, 270);
+				ctx.lineTo(105,270);
+				ctx.lineTo(105,215);
+				ctx.arc(80, 215, 25, 0,1*Math.PI, true);
+				ctx.lineTo(55,270);
+				ctx.stroke();
+				ctx.closePath();
+				ctx.fillStyle  = "#CCFF33";
+				ctx.fill();	
 				
+				// Draw chimney
+				ctx.beginPath();
+				ctx.strokeStyle = "black";
+				ctx.lineWidth = 3;
+				ctx.moveTo(220, 100); 
+				ctx.lineTo(244, 95); 
+				ctx.lineTo(255, 107);
+				ctx.lineTo(232, 111);
+				ctx.lineTo(220, 100);
+				ctx.stroke();
+				ctx.closePath();
+				ctx.fillStyle  = "brown";
+				ctx.fill();	
+				
+				ctx.beginPath();
+				ctx.lineWidth = 3;
+				ctx.moveTo(230, 108);
+				ctx.lineTo(230, 50);
+				ctx.lineTo(245, 48);
+				ctx.lineTo(245, 105);
+				ctx.strokeStyle = "black";
+				ctx.stroke();
+				ctx.closePath();
+				ctx.fillStyle  = "#666633";
+				ctx.fill();	
+				
+				// Draw windows
+				ctx.beginPath();
+				ctx.lineWidth = 2;
+				ctx.moveTo(150, 180);
+				ctx.lineTo(180, 175);
+				ctx.lineTo(184, 195);
+				ctx.lineTo(154, 200);
+				ctx.lineTo(150, 180);
+				ctx.strokeStyle = "black";
+				ctx.stroke();
+				ctx.closePath();
+				ctx.fillStyle  = "#FFFF99";
+				ctx.fill();
+				
+				ctx.beginPath();
+				ctx.lineWidth = 2;
+				ctx.moveTo(215, 170);
+				ctx.lineTo(245, 165);
+				ctx.lineTo(249, 185);
+				ctx.lineTo(219, 190);
+				ctx.lineTo(215, 170);
+				ctx.strokeStyle = "black";
+				ctx.stroke();
+				ctx.closePath();
+				ctx.fillStyle  = "#FFFF99";
+				ctx.fill();
 			}
 			
 			function  drawBorder(){
