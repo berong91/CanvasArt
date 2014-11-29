@@ -189,6 +189,30 @@
 				ctx.closePath();
 				ctx.fillStyle  = "#FFFF99";
 				ctx.fill();
+				
+				// Draw clock
+				ctx.beginPath();
+				ctx.lineWidth = 3;
+				ctx.arc(75, 130, 10, 0,  Math.PI * 2, true);
+				ctx.strokeStyle = "black";
+				ctx.stroke();
+				ctx.closePath();
+				ctx.fillStyle  = "#	99CCFF";
+				ctx.fill();
+				
+				ctx.beginPath();
+				ctx.lineWidth = 2;
+				ctx.moveTo(75, 130);
+				ctx.lineTo(75, 120);
+				ctx.stroke();
+				ctx.closePath();
+				
+				ctx.beginPath();
+				ctx.lineWidth = 1;
+				ctx.moveTo(75, 130);
+				ctx.lineTo(83, 130);
+				ctx.stroke();
+				ctx.closePath();
 			}
 			
 			function  drawBorder(){
@@ -219,8 +243,7 @@
 	<body onLoad="draw()">
 		<canvas id="myShape" width="300" height="300"></canvas>
 		<br/>
-		X : <h2 id="x"></h2>
-		<br/>
-		Y: <h2 id="y"></h2>
+		X : <p id="x"></p>
+		Y: <p id="y"></p>
 	</body>
 </html>
